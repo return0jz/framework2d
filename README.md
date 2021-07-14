@@ -1,2 +1,2 @@
 # framework2d
-A mini 2D game framework.
+A small but usable 2D game framework.
