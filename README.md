@@ -1,6 +1,7 @@
 # framework2d
 
 Yet another 2D game framework for the desktop.
+Created on 14/7/21
 
 ## Features:
 
@@ -19,10 +20,10 @@ Framework is integrated with IMGUI. An object abstraction around IMGUI context c
 - GLEW
 ## For the future:
 ### Todo:
+- ~~Add functionality for rendering quads filled with just colors (quite simple)~~ Added since 15/7/21
+- ~~Add support for mouse input~~ Added since 15/7/21
 - Add the game Camera (represents view matrix)
-- Add functionality for rendering quads filled with just colors (quite simple)
 - Revamp the trash project structure
-- Add support for mouse input
 - Unspaghetti the source code
 ### Possible features (if I ever needed them):
 - Wrappers for OpenGL framebuffers and graphical use in the renderer (for cool postprocessing and such)
