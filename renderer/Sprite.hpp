@@ -12,6 +12,7 @@ public:
     void setRotation(float pitch, float yaw, float roll);
     void setPosition(float x, float y, float z);
     void setMixColor(float r, float g, float b); // Color to mix with texture
+    void setPivot(float px, float py, float pz=0.0f);
     float getWidth()const;
     float getHeight()const;
     float getX()const;
@@ -23,6 +24,9 @@ public:
     float getR()const;
     float getG()const;
     float getB()const;
+    float getPivotX() const;
+    float getPivotY() const;
+    float getPivotZ() const;
 private:
     void activateTexture(int index)const;
     void bindTexture()const;

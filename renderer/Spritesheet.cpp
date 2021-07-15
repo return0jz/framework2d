@@ -11,9 +11,9 @@ struct jzj::Spritesheet::implementation {
     unsigned int cellRow;
     unsigned int cellCol;
     unsigned int sheetW;
-    unsigned int spriteW;
     unsigned int sheetH;
-    unsigned int spriteH;
+    float spriteW;
+    float spriteH;
     unsigned int spriteIndex;
     
     float x;
@@ -23,6 +23,10 @@ struct jzj::Spritesheet::implementation {
     float rx;
     float ry;
     float rz;
+    
+    float px;
+    float py;
+    float pz;
     
     float r;
     float g;
@@ -45,6 +49,9 @@ jzj::Spritesheet::Spritesheet(const std::string &path, int cellRow, int cellCol)
     impl->rx=0.0f;
     impl->ry=0.0f;
     impl->rz=0.0f;
+    impl->px=0.0f;
+    impl->py=0.0f;
+    impl->pz=0.0f;
     impl->r=1.0f;
     impl->g=1.0f;
     impl->b=1.0f;
@@ -85,7 +92,12 @@ void jzj::Spritesheet::setMixColor(float r, float g, float b) {
     impl->g=g;
     impl->b=b;
 }
-int jzj::Spritesheet::getSprite() const{
+void jzj::Spritesheet::setPivot(float px, float py, float pz) {
+    impl->px=px;
+    impl->py=py;
+    impl->pz=pz;
+}
+unsigned int jzj::Spritesheet::getSprite() const{
     return impl->spriteIndex;
 }
 unsigned int jzj::Spritesheet::getSheetWidth() const{
@@ -94,10 +106,10 @@ unsigned int jzj::Spritesheet::getSheetWidth() const{
 unsigned int jzj::Spritesheet::getSheetHeight() const{
     return impl->sheetH;
 }
-unsigned int jzj::Spritesheet::getSpriteWidth() const{
+float jzj::Spritesheet::getSpriteWidth() const{
     return impl->spriteW;
 }
-unsigned int jzj::Spritesheet::getSpriteHeight() const{
+float jzj::Spritesheet::getSpriteHeight() const{
     return impl->spriteH;
 }
 unsigned int jzj::Spritesheet::getDefaultSpriteWidth() const{
@@ -138,6 +150,18 @@ float jzj::Spritesheet::getG() const{
 }
 float jzj::Spritesheet::getB() const{
     return impl->b;
+}
+
+float jzj::Spritesheet::getPivotX() const{
+    return impl->px;
+}
+
+float jzj::Spritesheet::getPivotY() const{
+    return impl->py;
+}
+
+float jzj::Spritesheet::getPivotZ() const{
+    return impl->pz;
 }
 
 void jzj::Spritesheet::activateTexture(int index) const{

@@ -127,13 +127,13 @@ void jzj::Renderer2D::draw(const Sprite *sprite) {
     
     model = glm::translate(model, glm::vec3(sprite->getX(), sprite->getY(), sprite->getZ()));
     
-    model = glm::translate(model, glm::vec3(0.5f * sprite->getWidth(), 0.5f * sprite->getHeight(), 0));
+    model = glm::translate(model, glm::vec3(sprite->getPivotX(), sprite->getPivotY(), sprite->getPivotZ()));
     
     model = glm::rotate(model, glm::radians(sprite->getPitch()), glm::vec3(1.0f, 0.0f, .0f));
     model = glm::rotate(model, glm::radians(sprite->getYaw()), glm::vec3(0.0f, 1.0f, 0.0f));
     model = glm::rotate(model, glm::radians(sprite->getRoll()), glm::vec3(0.0f, 0.0f, 1.0f));
-
-    model = glm::translate(model, glm::vec3(-0.5f * sprite->getWidth(), -0.5f * sprite->getHeight(), 0));
+    
+    model = glm::translate(model, glm::vec3(-sprite->getPivotX(), -sprite->getPivotY(), -sprite->getPivotZ()));
     
     model = glm::scale(model, glm::vec3(sprite->getWidth(),sprite->getHeight(), 1.0f));
     
@@ -175,13 +175,11 @@ void jzj::Renderer2D::draw(const Spritesheet *spritesheet) {
     
     model = glm::translate(model, glm::vec3(spritesheet->getX(), spritesheet->getY(), spritesheet->getZ()));
     
-    model = glm::translate(model, glm::vec3(0.5f * spritesheet->getSpriteWidth(), 0.5f * spritesheet->getSpriteHeight(), 0));
-    
+    model = glm::translate(model, glm::vec3(spritesheet->getPivotX(), spritesheet->getPivotY(), spritesheet->getPivotZ()));
     model = glm::rotate(model, glm::radians(spritesheet->getPitch()), glm::vec3(1.0f, 0.0f, .0f));
     model = glm::rotate(model, glm::radians(spritesheet->getYaw()), glm::vec3(0.0f, 1.0f, 0.0f));
     model = glm::rotate(model, glm::radians(spritesheet->getRoll()), glm::vec3(0.0f, 0.0f, 1.0f));
-
-    model = glm::translate(model, glm::vec3(-0.5f * spritesheet->getSpriteWidth(), -0.5f * spritesheet->getSpriteHeight(), 0));
+    model = glm::translate(model, glm::vec3(-spritesheet->getPivotX(), -spritesheet->getPivotY(), -spritesheet->getPivotZ()));
     
     model = glm::scale(model, glm::vec3(spritesheet->getSpriteWidth(),spritesheet->getSpriteHeight(), 1.0f));
     
@@ -203,13 +201,11 @@ void jzj::Renderer2D::draw(const jzj::Rectangle *rect) {
 
     model = glm::translate(model, glm::vec3(rect->getX(), rect->getY(), rect->getZ()));
 
-    model = glm::translate(model, glm::vec3(0.5f * rect->getWidth(), 0.5f * rect->getHeight(), 0));
-
+    model = glm::translate(model, glm::vec3(rect->getPivotX(), rect->getPivotY(), rect->getPivotZ()));
     model = glm::rotate(model, glm::radians(rect->getPitch()), glm::vec3(1.0f, 0.0f, .0f));
     model = glm::rotate(model, glm::radians(rect->getYaw()), glm::vec3(0.0f, 1.0f, 0.0f));
     model = glm::rotate(model, glm::radians(rect->getRoll()), glm::vec3(0.0f, 0.0f, 1.0f));
-
-    model = glm::translate(model, glm::vec3(-0.5f * rect->getWidth(), -0.5f * rect->getHeight(), 0));
+    model = glm::translate(model, glm::vec3(-rect->getPivotX(), -rect->getPivotY(), -rect->getPivotZ()));
 
     model = glm::scale(model, glm::vec3(rect->getWidth(),rect->getHeight(), 1.0f));
 

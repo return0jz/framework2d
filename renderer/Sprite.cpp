@@ -18,6 +18,10 @@ struct jzj::Sprite::implementation {
     float ry;
     float rz;
     
+    float px;
+    float py;
+    float pz;
+    
     float r;
     float g;
     float b;
@@ -34,6 +38,9 @@ jzj::Sprite::Sprite(const std::string &path) : impl(new Sprite::implementation) 
     impl->rx=0.0f;
     impl->ry=0.0f;
     impl->rz=0.0f;
+    impl->px=0.0f;
+    impl->py=0.0f;
+    impl->pz=0.0f;
     impl->r=1.0f;
     impl->g=1.0f;
     impl->b=1.0f;
@@ -63,6 +70,12 @@ void jzj::Sprite::setMixColor(float r, float g, float b) {
     impl->r=r;
     impl->g=g;
     impl->b=b;
+}
+
+void jzj::Sprite::setPivot(float px, float py, float pz) {
+    impl->px=px;
+    impl->py=py;
+    impl->pz=pz;
 }
 
 float jzj::Sprite::getWidth() const{
@@ -98,6 +111,18 @@ float jzj::Sprite::getG() const{
 }
 float jzj::Sprite::getB() const{
     return impl->b;
+}
+
+float jzj::Sprite::getPivotX() const{
+    return impl->px;
+}
+
+float jzj::Sprite::getPivotY() const{
+    return impl->py;
+}
+
+float jzj::Sprite::getPivotZ() const{
+    return impl->pz;
 }
 
 void jzj::Sprite::activateTexture(int index) const{

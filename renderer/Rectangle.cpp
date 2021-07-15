@@ -17,6 +17,10 @@ struct jzj::Rectangle::implementation {
     float ry;
     float rz;
     
+    float px;
+    float py;
+    float pz;
+    
     float r;
     float g;
     float b;
@@ -31,6 +35,9 @@ jzj::Rectangle::Rectangle(float x, float y, float z, float width, float height) 
     impl->rx=0.0f;
     impl->ry=0.0f;
     impl->rz=0.0f;
+    impl->px=0.0f;
+    impl->py=0.0f;
+    impl->pz=0.0f;
     impl->r=1.0f;
     impl->g=1.0f;
     impl->b=1.0f;
@@ -59,6 +66,11 @@ void jzj::Rectangle::setColor(float r, float g, float b) {
     impl->r=r;
     impl->g=g;
     impl->b=b;
+}
+void jzj::Rectangle::setPivot(float px, float py, float pz) {
+    impl->px=px;
+    impl->py=py;
+    impl->pz=pz;
 }
 float jzj::Rectangle::getWidth() const{
     return impl->w;
@@ -92,4 +104,16 @@ float jzj::Rectangle::getG() const{
 }
 float jzj::Rectangle::getB() const{
     return impl->b;
+}
+
+float jzj::Rectangle::getPivotX() const{
+    return impl->px;
+}
+
+float jzj::Rectangle::getPivotY() const{
+    return impl->py;
+}
+
+float jzj::Rectangle::getPivotZ() const{
+    return impl->pz;
 }

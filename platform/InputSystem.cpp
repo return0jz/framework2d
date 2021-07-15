@@ -25,8 +25,8 @@ jzj::InputSystem::InputSystem(jzj::GLContextDisplay *display) : impl(new jzj::In
     for (int i = 0; i < impl->noKeys;i++) {
         impl->prevKeyboardState[i] = impl->currKeyboardState[i];
     }
-    impl->mouseX = 0;
-    impl->mouseY=0;
+    impl->currMouseState = SDL_GetMouseState(&impl->mouseX, &impl->mouseY);
+    impl->prevMouseState=impl->currMouseState;
     impl->quit = false;
 }
 
