@@ -23,6 +23,7 @@ Framework is integrated with IMGUI. An object abstraction around IMGUI context c
 - ~~Add functionality for rendering quads filled with just colors (quite simple)~~ Added since 15/7/21
 - ~~Add support for mouse input~~ Added since 15/7/21
 - Add the game Camera (represents view matrix)
+- Allow setting pivot points for rotation
 - Revamp the trash project structure
 - Unspaghetti the source code
 ### Possible features (if I ever needed them):
