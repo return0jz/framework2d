@@ -1,11 +1,11 @@
-#include "InputSystem.hpp"
+#include "GLPlatformLayer.hpp"
 #include <SDL2/SDL.h>
 #include <vector>
 #include <iostream>
 #include <cstdint>
 
-struct jzj::InputSystem::implementation {
-    jzj::GLContextDisplay *display;
+struct jzj::GLPlatformLayer::InputSystem::implementation {
+    jzj::GLPlatformLayer *display;
     const std::uint8_t *currKeyboardState;
     std::uint8_t *prevKeyboardState;
     std::uint32_t currMouseState;
@@ -18,7 +18,7 @@ struct jzj::InputSystem::implementation {
     SDL_Event e;
 };
 
-jzj::InputSystem::InputSystem(jzj::GLContextDisplay *display) : impl(new jzj::InputSystem::implementation) {
+jzj::GLPlatformLayer::InputSystem::InputSystem(jzj::GLPlatformLayer *display) : impl(new jzj::GLPlatformLayer::InputSystem::implementation) {
     impl->display = display;
     impl->currKeyboardState = SDL_GetKeyboardState(&impl->noKeys);
     impl->prevKeyboardState = new std::uint8_t[impl->noKeys];
@@ -30,11 +30,11 @@ jzj::InputSystem::InputSystem(jzj::GLContextDisplay *display) : impl(new jzj::In
     impl->quit = false;
 }
 
-jzj::InputSystem::~InputSystem() {
+jzj::GLPlatformLayer::InputSystem::~InputSystem() {
     delete[] impl->prevKeyboardState;
 }
 
-void jzj::InputSystem::update() {
+void jzj::GLPlatformLayer::InputSystem::update() {
     for (int i = 0; i < impl->noKeys;i++) {
         impl->prevKeyboardState[i] = impl->currKeyboardState[i];
     }
@@ -58,53 +58,53 @@ void jzj::InputSystem::update() {
     impl->currMouseState = SDL_GetMouseState(&impl->mouseX, &impl->mouseY);
 };
 
-bool jzj::InputSystem::getKey(SDL_Scancode scancode) {
+bool jzj::GLPlatformLayer::InputSystem::getKey(SDL_Scancode scancode) {
     return impl->currKeyboardState[scancode];
 }
 
-bool jzj::InputSystem::getKeyDown(SDL_Scancode scancode) {
+bool jzj::GLPlatformLayer::InputSystem::getKeyDown(SDL_Scancode scancode) {
     return !impl->prevKeyboardState[scancode] && impl->currKeyboardState[scancode];
 }
 
-bool jzj::InputSystem::getKeyUp(SDL_Scancode scancode) {
+bool jzj::GLPlatformLayer::InputSystem::getKeyUp(SDL_Scancode scancode) {
     return impl->prevKeyboardState[scancode] && !impl->currKeyboardState[scancode];
 }
 
-bool jzj::InputSystem::getKey(SDL_Keycode keycode) {
+bool jzj::GLPlatformLayer::InputSystem::getKey(SDL_Keycode keycode) {
     return impl->currKeyboardState[SDL_GetScancodeFromKey(keycode)];
 }
 
-bool jzj::InputSystem::getKeyDown(SDL_Keycode keycode) {
+bool jzj::GLPlatformLayer::InputSystem::getKeyDown(SDL_Keycode keycode) {
     return !impl->prevKeyboardState[SDL_GetScancodeFromKey(keycode)] && impl->currKeyboardState[SDL_GetScancodeFromKey(keycode)];
 }
-bool jzj::InputSystem::getKeyUp(SDL_Keycode keycode) {
+bool jzj::GLPlatformLayer::InputSystem::getKeyUp(SDL_Keycode keycode) {
     return impl->prevKeyboardState[SDL_GetScancodeFromKey(keycode)] && !impl->currKeyboardState[SDL_GetScancodeFromKey(keycode)];
 }
 
-bool jzj::InputSystem::getMouseButton(int button) {
+bool jzj::GLPlatformLayer::InputSystem::getMouseButton(int button) {
     return impl->currMouseState & SDL_BUTTON(button);
 }
 
-bool jzj::InputSystem::getMouseButtonDown(int button) {
+bool jzj::GLPlatformLayer::InputSystem::getMouseButtonDown(int button) {
     return !(impl->prevMouseState & SDL_BUTTON(button)) && (impl->currMouseState & SDL_BUTTON(button));
 }
 
-bool jzj::InputSystem::getMouseButtonUp(int button) {
+bool jzj::GLPlatformLayer::InputSystem::getMouseButtonUp(int button) {
     return (impl->prevMouseState & SDL_BUTTON(button)) && !(impl->currMouseState & SDL_BUTTON(button));
 }
 
-int jzj::InputSystem::getMouseX() {
+int jzj::GLPlatformLayer::InputSystem::getMouseX() {
     return impl->mouseX;
 }
 
-int jzj::InputSystem::getMouseY() {
+int jzj::GLPlatformLayer::InputSystem::getMouseY() {
     return impl->mouseY;
 }
 
-int jzj::InputSystem::getMouseWheelDelta() {
+int jzj::GLPlatformLayer::InputSystem::getMouseWheelDelta() {
     return impl->mouseWheel;
 }
 
-bool jzj::InputSystem::getQuit() {
+bool jzj::GLPlatformLayer::InputSystem::getQuit() {
     return impl->quit;
 }

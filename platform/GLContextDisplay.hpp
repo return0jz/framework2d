@@ -2,12 +2,13 @@
 
 #include <string>
 #include <memory>
+#include "../Base.hpp"
 
 namespace jzj {
-class GLContextDisplay {
+class GLPlatformLayer : public Base {
 public:
-    GLContextDisplay(std::string title, int width, int height, int glMajorVersion, int glMinorVersion) noexcept(false);
-    ~GLContextDisplay();
+    GLPlatformLayer(std::string title, int width, int height, int glMajorVersion, int glMinorVersion) noexcept(false);
+    ~GLPlatformLayer();
     
     void* getWindow(); // Underlying SDL_Window pointer
     void* getContext(); // Underlying SDL_Context
