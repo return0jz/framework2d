@@ -1,6 +1,7 @@
 #pragma once
 
-#include "renderer/renderer.hpp"
-#include "platform/platform.hpp"
-#include "IMGUI.hpp"
+#include "graphics/graphics.h"
+#include "platform/platform.h"
+#include "util/util.h"
 #include "GameApp.hpp"
+#include "Base.hpp"

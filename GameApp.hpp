@@ -1,10 +1,11 @@
 #pragma once
+#include "Base.hpp"
 
 namespace jzj {
 
 #define JZJQUICKIMPLEMENT(x) int main(int argc, const char * argv[]){x JZJAPPOBJECT;JZJAPPOBJECT.run();return 0;} 
 
-class GameApp {
+class GameApp : public Base {
 public:
     GameApp() : isRunning(true) {}
     ~GameApp() {}
