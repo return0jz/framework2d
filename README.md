@@ -22,14 +22,8 @@ Framework is integrated with IMGUI. An object abstraction around IMGUI context c
 ### Todo:
 - ~~Add functionality for rendering quads filled with just colors (quite simple)~~ Added since 15/7/21
 - ~~Add support for mouse input~~ Added since 15/7/21
-- Add the game Camera (represents view matrix)
 - ~~Allow option for pivot points for rotation~~ Added since 16/7/21
+- ~~Add audio playing ~~ Added since 27/7/21
 - Allow option for texture filtering method.
 - Revamp the trash project structure
 - Unspaghetti the source code
-### Possible features (if I ever needed them):
-- Wrappers for OpenGL framebuffers and graphical use in the renderer (for cool postprocessing and such)
-- Support for geometry shaders and batch rendering (unlikely as 2D games don't usually require such optimisation)
-- Better integration with GLM (e.g. use glm::vec3 instead of three floats as parameter)
-- Other forms of input (controller support is likely, touch support isn't since who likes mobile games)
-- Evolve the project for 3D???
