@@ -26,7 +26,8 @@ struct jzj::Rectangle::implementation {
     float b;
 };
 
-jzj::Rectangle::Rectangle(float x, float y, float z, float width, float height) : impl(new Rectangle::implementation) {
+jzj::Rectangle::Rectangle(float x, float y, float z, float width, float height) {
+    impl = new jzj::Rectangle::implementation;
     impl->x=x;
     impl->y=y;
     impl->z=z;
@@ -44,6 +45,7 @@ jzj::Rectangle::Rectangle(float x, float y, float z, float width, float height) 
 }
 
 jzj::Rectangle::~Rectangle() {
+    delete impl;
 }
 
 void jzj::Rectangle::setDimensions(float width, float height) {

@@ -7,9 +7,9 @@
 #include <utility>
 
 namespace jzj {
-class IMGUIcontext : public Base { // Simple abstraction for Dear ImGui context management
+class IMGUIcontext : public Base { // context management
 public:
-    IMGUIcontext(jzj::GLPlatformLayer *display, void (*styleFunction)(ImGuiStyle* style)); // from ImgGui::GetStyle()
+    IMGUIcontext(jzj::GLPlatformLayer *display, void (*styleFunction)(ImGuiStyle* style) = NULL); // from ImgGui::GetStyle()
     ~IMGUIcontext();
     void update();
     void render();

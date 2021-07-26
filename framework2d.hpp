@@ -2,6 +2,6 @@
 
 #include "graphics/graphics.h"
 #include "platform/platform.h"
-#include "util/util.h"
+#include "classes/classes.h"
 #include "GameApp.hpp"
 #include "Base.hpp"

@@ -1,5 +1,5 @@
 #pragma once
-#include "../Base.hpp"
+#include "Base.hpp"
 
 namespace jzj {
 class Transformable : public jzj::Base { // Not implemented yet

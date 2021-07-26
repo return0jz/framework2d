@@ -16,15 +16,13 @@
 #define JZJGLEWINTIERROR 3
 
 struct jzj::GLPlatformLayer::implementation {
-    implementation() {}
     SDL_Window *window;
-    void* glContext;
+    SDL_GLContext glContext;
+    
     void initSDL(std::string title, int width, int height, int glMajorVersion, int glMinorVersion) {
-        glMajorVersion = std::max(glMajorVersion, 3);
         if(SDL_Init(SDL_INIT_EVERYTHING)<0) {
             throw JZJSDLINITERROR;
         }
-        
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, true);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG); 
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -76,10 +74,14 @@ struct jzj::GLPlatformLayer::implementation {
     }
 };
 
-jzj::GLPlatformLayer::GLPlatformLayer(std::string title, int width, int height, int glMajorVersion, int glMinorVersion) : impl(new implementation){
+jzj::GLPlatformLayer::GLPlatformLayer(std::string title, int width, int height, int glMajorVersion, int glMinorVersion) {
     try {
+        impl = new jzj::GLPlatformLayer::implementation;
         this->impl->initSDL(title,width,height,glMajorVersion,glMinorVersion);
         this->impl->loadGLRoutines();
+        
+        this->input = new jzj::GLPlatformLayer::InputSystem(this);
+        this->audio = new jzj::GLPlatformLayer::Audio(this);
     }
     catch(int n) {
         this->impl->handleErrors(n);
@@ -87,9 +89,12 @@ jzj::GLPlatformLayer::GLPlatformLayer(std::string title, int width, int height, 
 }
 
 jzj::GLPlatformLayer::~GLPlatformLayer() {
+    delete this->audio;
+    delete this->input;
     SDL_GL_DeleteContext(this->impl->glContext);
     SDL_DestroyWindow(this->impl->window);
     SDL_Quit();
+    delete this->impl;
 }
 
 int jzj::GLPlatformLayer::getWidth() {

@@ -1,5 +1,5 @@
 #pragma once
-#include "../platform/GLPlatformLayer.hpp"
+#include "GLPlatformLayer.hpp"
 #include "Sprite.hpp"
 #include "Spritesheet.hpp"
 #include "Rectangle.hpp"
@@ -19,7 +19,7 @@ public:
     ~Renderer2D();
 private:
     struct implementation;
-    std::unique_ptr<implementation> impl;
+    jzj::Renderer2D::implementation * impl;
 };
 }
 

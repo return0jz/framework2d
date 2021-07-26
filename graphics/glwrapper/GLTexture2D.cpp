@@ -1,5 +1,5 @@
 #include "GLTexture2D.hpp"
-#include "../../lib/img/stb_image.hpp"
+#include "../../lib/stb_image/stb_image.hpp"
 #include <stdexcept>
 
 jzj::GLTexture2D::GLTexture2D(const GLTexture2DFlags &flags, std::string path) {

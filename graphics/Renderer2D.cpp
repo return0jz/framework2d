@@ -18,7 +18,8 @@ struct jzj::Renderer2D::implementation {
     float far;
 };
 
-jzj::Renderer2D::Renderer2D(jzj::GLPlatformLayer *display, float near, float far) : impl(new Renderer2D::implementation) {
+jzj::Renderer2D::Renderer2D(jzj::GLPlatformLayer *display, float near, float far) {
+    this->impl = new jzj::Renderer2D::implementation;
     impl->display = display;
     impl->near = near;
     impl->far = far;
@@ -107,6 +108,7 @@ jzj::Renderer2D::~Renderer2D() {
     
     delete impl->rectShader;
     delete impl->spriteShader;
+    delete impl;
 }
 
 void jzj::Renderer2D::draw(const Sprite *sprite) {
@@ -128,11 +130,9 @@ void jzj::Renderer2D::draw(const Sprite *sprite) {
     model = glm::translate(model, glm::vec3(sprite->getX(), sprite->getY(), sprite->getZ()));
     
     model = glm::translate(model, glm::vec3(sprite->getPivotX(), sprite->getPivotY(), sprite->getPivotZ()));
-    
     model = glm::rotate(model, glm::radians(sprite->getPitch()), glm::vec3(1.0f, 0.0f, .0f));
     model = glm::rotate(model, glm::radians(sprite->getYaw()), glm::vec3(0.0f, 1.0f, 0.0f));
     model = glm::rotate(model, glm::radians(sprite->getRoll()), glm::vec3(0.0f, 0.0f, 1.0f));
-    
     model = glm::translate(model, glm::vec3(-sprite->getPivotX(), -sprite->getPivotY(), -sprite->getPivotZ()));
     
     model = glm::scale(model, glm::vec3(sprite->getWidth(),sprite->getHeight(), 1.0f));

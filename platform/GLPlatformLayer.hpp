@@ -3,10 +3,10 @@
 #include <string>
 #include <memory>
 #include <SDL2/SDL.h>
-#include "../Base.hpp"
+#include "Base.hpp"
 
 namespace jzj {
-class GLPlatformLayer : public Base { // Class that represents multimedia layer with an OpenGL Context
+class GLPlatformLayer : public Base { // represents multimedia layer with OpenGL Context
 public:
     GLPlatformLayer(std::string title, int width, int height, int glMajorVersion, int glMinorVersion) noexcept(false);
     ~GLPlatformLayer();
@@ -20,7 +20,6 @@ public:
     bool isWindowedFullscreen();
     bool isWindowed();
     
-    // Todo: Add window setters (setVisible, resize, etc.)
     void swap();
 
     void setWidth(int width);
@@ -30,7 +29,7 @@ public:
     void setFullscreen();
     void setWindowedFullscreen();
     void setWindowed();
-    
+private:
     class InputSystem : public Base {
     public:
         InputSystem(jzj::GLPlatformLayer *display);
@@ -57,8 +56,28 @@ public:
         struct implementation;
         std::unique_ptr<implementation> impl;
     };
+    
+    class Audio {
+    public:
+        Audio(jzj::GLPlatformLayer *display);
+        ~Audio();
+        void playMusic(std::string path, int loops=0); // Only one music at a time | repeats infinitely when loops=-1
+        void playSound(std::string path, int loops=0, int channel=-1); // Multiple sounds at a time | repeats infinitely when loops=-1
+        void stopMusic();
+        void stopChannel(int channel);
+        bool isPlayingChannel(int channel);
+        bool isPlayingMusic();
+        int setMusicVolume(int volume); // 0 - 128 | returns previous volume
+        int setSoundVolume(std::string path, int volume); // 0 - 128 (if < 0 nothing happens) | returns previous volume or -1 if chunk doesn't exist
+    private:
+        struct implementation;
+        jzj::GLPlatformLayer::Audio::implementation *impl;
+    };
 private:
     struct implementation;
-    std::unique_ptr<implementation> impl;
+    jzj::GLPlatformLayer::implementation *impl;
+public:
+    jzj::GLPlatformLayer::InputSystem *input;
+    jzj::GLPlatformLayer::Audio *audio;
 };
 }

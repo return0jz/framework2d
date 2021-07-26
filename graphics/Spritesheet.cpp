@@ -33,7 +33,8 @@ struct jzj::Spritesheet::implementation {
     float b;
 };
 
-jzj::Spritesheet::Spritesheet(const std::string &path, int cellRow, int cellCol) : impl(new Spritesheet::implementation) {
+jzj::Spritesheet::Spritesheet(const std::string &path, int cellRow, int cellCol) {
+    impl = new jzj::Spritesheet::implementation;
     impl->texture = new jzj::GLTexture2D(jzj::GLTexture2DFlags(), path);
     impl->spriteIndex = 0;
     impl->sheetW = impl->texture->width;
@@ -59,6 +60,7 @@ jzj::Spritesheet::Spritesheet(const std::string &path, int cellRow, int cellCol)
 
 jzj::Spritesheet::~Spritesheet() {
     delete impl->texture;
+    delete impl;
 }
 
 void jzj::Spritesheet::setSprite(int index) {

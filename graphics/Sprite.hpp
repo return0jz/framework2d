@@ -32,7 +32,7 @@ private:
     void activateTexture(int index)const;
     void bindTexture()const;
     struct implementation;
-    std::unique_ptr<implementation> impl;
+    jzj::Sprite::implementation *impl;
 };
 }
 

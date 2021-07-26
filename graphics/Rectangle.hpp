@@ -30,7 +30,7 @@ public:
     float getPivotZ() const;
 private:
     struct implementation;
-    std::unique_ptr<implementation> impl;
+    jzj::Rectangle::implementation *impl;
 };
 }
 

@@ -27,7 +27,8 @@ struct jzj::Sprite::implementation {
     float b;
 };
 
-jzj::Sprite::Sprite(const std::string &path) : impl(new Sprite::implementation) {
+jzj::Sprite::Sprite(const std::string &path) {
+    impl = new jzj::Sprite::implementation;
     impl->texture = new jzj::GLTexture2D(jzj::GLTexture2DFlags(), path);
 
     impl->w = impl->texture->width;
@@ -48,6 +49,7 @@ jzj::Sprite::Sprite(const std::string &path) : impl(new Sprite::implementation) 
 
 jzj::Sprite::~Sprite() {
     delete impl->texture;
+    delete impl;
 }
 
 void jzj::Sprite::setDimensions(float width, float height) {
