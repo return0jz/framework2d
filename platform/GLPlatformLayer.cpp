@@ -117,6 +117,11 @@ void *jzj::GLPlatformLayer::getContext() {
     return this->impl->glContext;
 }
 
+std::string jzj::GLPlatformLayer::getResource(const std::string &resName) {
+    static std::string path = SDL_GetBasePath();
+    return path + resName;
+}
+
 bool jzj::GLPlatformLayer::isFullscreen() {
     return SDL_GetWindowFlags(this->impl->window) & SDL_WINDOW_FULLSCREEN;
 }

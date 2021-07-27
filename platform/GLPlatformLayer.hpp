@@ -13,9 +13,10 @@ public:
     
     void* getWindow(); // Underlying SDL_Window pointer
     void* getContext(); // Underlying SDL_Context
-    
     int getWidth();
     int getHeight();
+    std::string getResource(const std::string &resName);
+
     bool isFullscreen();
     bool isWindowedFullscreen();
     bool isWindowed();
@@ -61,14 +62,17 @@ private:
     public:
         Audio(jzj::GLPlatformLayer *display);
         ~Audio();
-        void playMusic(std::string path, int loops=0); // Only one music at a time | repeats infinitely when loops=-1
-        void playSound(std::string path, int loops=0, int channel=-1); // Multiple sounds at a time | repeats infinitely when loops=-1
+        void loadSound(const std::string &path);
+        int playSound(const std::string &path, int loops=0, int channel=-1); // Multiple sounds at a time | repeats infinitely when loops=-1 | returns sound channel
+        void stopSoundChannel(int channel);
+        bool isPlayingSoundChannel(int channel);
+
+        void loadMusic(const std::string &path);
+        void playMusic(const std::string &path, int loops=0); // Only one music at a time | repeats infinitely when loops=-1
         void stopMusic();
-        void stopChannel(int channel);
-        bool isPlayingChannel(int channel);
         bool isPlayingMusic();
         int setMusicVolume(int volume); // 0 - 128 | returns previous volume
-        int setSoundVolume(std::string path, int volume); // 0 - 128 (if < 0 nothing happens) | returns previous volume or -1 if chunk doesn't exist
+        int setSoundVolume(const std::string &path, int volume); // 0 - 128 (if < 0 nothing happens) | returns previous volume or -1 if chunk doesn't exist
     private:
         struct implementation;
         jzj::GLPlatformLayer::Audio::implementation *impl;
