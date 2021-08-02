@@ -21,6 +21,7 @@ protected:
     virtual void loop() = 0;
     virtual void exit() = 0;
     bool isRunning;
+    double deltaTime;
 };
 }
 
