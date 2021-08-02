@@ -23,7 +23,7 @@ Framework is integrated with IMGUI. An object abstraction around IMGUI context c
 - ~~Add functionality for rendering quads filled with just colors (quite simple)~~ Added since 15/7/21
 - ~~Add support for mouse input~~ Added since 15/7/21
 - ~~Allow option for pivot points for rotation~~ Added since 16/7/21
-- ~~Add audio playing ~~ Added since 27/7/21
+- ~~Add audio playing~~ Added since 27/7/21
 - Allow option for texture filtering method.
 - Revamp the trash project structure
 - Unspaghetti the source code
